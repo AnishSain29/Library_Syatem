@@ -138,7 +138,7 @@ class Sign_Up{
             if (password.matches(passRegex)) {
                 System.out.println("Account created successfully!");
                 //ask for search book or borrow book or submit book or raise query
-                System.out.println("1. search bok \n 2. borrow book \n 3. submit book \n 4. raise query \n 5. exit");
+                System.out.println(" 1. search bok \n 2. borrow book \n 3. submit book \n 4. raise query \n 5. exit");
                 int choice = sc.nextInt();
                 switch(choice){
                     case 1 :
@@ -259,37 +259,43 @@ class Search_Book{
                             "A Thousand Suns",
                             "The Glass Tower",
                             "Storms of Destiny"};
+        boolean found = false;
         for(int i=0 ; i<Books.length ; i++){
             if(Books[i].equals(book)){
+                found = true;
                 //search the book in the database, if got matched return true
-                return true;
+                break;
             }
         }
-        if(true){
+        if(found){
             System.out.println(STR."\{book} found");
+            return true;
         }
         else{
             System.out.println(STR."\{book} not found");
+            return false;
         }
 
-        return false;
+        //return false;
     }
 }
 
 class Borrow_Book{
     public static void borrow_book(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("enter book name");
-        String book = sc.nextLine();
+//        System.out.println("enter book name");
+//        String book = sc.nextLine();
         Search_Book obj = new Search_Book();
-        if(obj.search_book()){
+        boolean foundBook =  obj.search_book();
+        if(foundBook){
             System.out.println("enter date to return");
             String return_date = sc.nextLine();
+            String bookId = sc.nextLine();
+            //this bookId and the return_date will be added to that emilId
         }
         else{
-            System.out.println(book+" not found");
+            System.out.println("Sorry! can't lend ");
         }
-
 
     }
 }
@@ -297,12 +303,13 @@ class Borrow_Book{
 class Submit_Book{
     public static void submit_book(){
         Scanner sc = new Scanner(System.in);
+        System.out.println("book id");
+        String bookId = sc.nextLine();
         System.out.println("book name");
         String book = sc.nextLine();
         System.out.println("author name");
         String author = sc.nextLine();
-        System.out.println("book id");
-        String bookId = sc.nextLine();
+
     }
 }
 
@@ -368,10 +375,5 @@ public class LibrarySystem{
         Entry obj2 = new Entry();
         obj2.entry();
 
-//        Daily_Learner OBJ = new Daily_Learner();
-//        OBJ.daily_learner();
-//
-//        Librarian OBJ2 = new Librarian();
-//        OBJ2.librarian();
     }
 }
