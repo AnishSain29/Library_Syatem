@@ -14,7 +14,6 @@ class Date_Time{
 }
 
 class Entry{
-
     public static void entry(){
         System.out.println("choice \n 1. Daily Learner \n 2. Librarian \n 3. Guest ");
         System.out.println("enter choice, who are you ? ");
@@ -37,11 +36,9 @@ class Entry{
                 System.out.println("check your choice");
         }
     }
-
 }
 
 class Daily_Learner{
-
     public static void daily_learner(){
         System.out.println("1. sign up 2. log in");
         Scanner sc = new Scanner(System.in);
@@ -83,9 +80,11 @@ class Librarian{
             case 3:
                 Add_Book obj3 = new Add_Book();
                 obj3.add_book();
+                break;
             case 4 :
                 Check_Query obj4 = new Check_Query();
                 obj4.check_query();
+                break;
             default:
                 System.out.println("invalid choice");
         }
@@ -126,12 +125,11 @@ class Sign_Up{
         Scanner sc = new Scanner(System.in);
         String email = sc.nextLine();
         // regex with all conditions
-        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z0-9@#$!%*?&+_.-]+@[A-Za-z0-9.-]+$";
+        String emailRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z0-9@#$!%*?&+_.-]+@[A-Za-z0-9.-]+$";
 
-        if (email.matches(regex)) {
+        if (email.matches(emailRegex)) {
             System.out.println(" Valid email id ");
-
-            // Now ask for password
+            // if email id is valid then, ask for password
             System.out.print("Enter password: ");
             String password = sc.nextLine();
             // Password regex with conditions (min 6 chars just as example)
@@ -183,15 +181,17 @@ class Sign_Up{
 
 class Log_In{
     public static void log_in(){
-        //ask for email id, if got matched from the database
+
         // ask for password, if password also got matched from the database
         // ask for choice
         System.out.println("enter valid email id");
+        //ask for email id, and find it from the database
         Scanner sc = new Scanner(System.in);
         String email = sc.nextLine();
         // regex with all conditions
-        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z0-9@#$!%*?&+_.-]+@[A-Za-z0-9.-]+$";
-        if (email.matches(regex)) {//search the given email in the database, if got matched then ask for password
+        String emailRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z0-9@#$!%*?&+_.-]+@[A-Za-z0-9.-]+$";
+        if (email.matches(emailRegex)) {
+            //search the given email in the database, if got matched then ask for password
             System.out.println(" email id found");
 
             // ask for password
@@ -200,10 +200,9 @@ class Log_In{
             // Password regex with conditions (min 6 chars just as example)
             String passRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z\\d@#$!%*?&]{8,}$";
 
-            if (password.matches(passRegex)) {//search the password in the database, if got matched from the database,
-                                                //then ask for further choices
+            if (password.matches(passRegex)) {//search the password in the database to login
                 System.out.println("log in successful !");
-                //ask for search book or borrow book or submit book or raise query
+                //if password got matched then, ask for choices
                 System.out.println("1. search bok \n 2. borrow book \n 3. submit book \n 4. raise query \n 5. exit");
                 int choice = sc.nextInt();
                 switch(choice){
@@ -262,8 +261,8 @@ class Search_Book{
                             "Storms of Destiny"};
         for(int i=0 ; i<Books.length ; i++){
             if(Books[i].equals(book)){
+                //search the book in the database, if got matched return true
                 return true;
-
             }
         }
         if(true){
@@ -272,23 +271,23 @@ class Search_Book{
         else{
             System.out.println(STR."\{book} not found");
         }
-        //search the book in the database, if got matched return true
-        return true;
+
+        return false;
     }
 }
 
 class Borrow_Book{
     public static void borrow_book(){
         Scanner sc = new Scanner(System.in);
-        //System.out.println("enter book name");
+        System.out.println("enter book name");
+        String book = sc.nextLine();
         Search_Book obj = new Search_Book();
-        obj.search_book();
-        if(true){
+        if(obj.search_book()){
             System.out.println("enter date to return");
             String return_date = sc.nextLine();
         }
         else{
-
+            System.out.println(book+" not found");
         }
 
 
