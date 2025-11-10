@@ -15,7 +15,7 @@ class Date_Time{
 
 class Entry{
     public static void entry(){
-        System.out.println("choice \n 1. Daily Learner \n 2. Librarian \n 3. Guest ");
+        System.out.println("choice:\n   1. Daily Learner\n   2. Librarian\n   3. Guest ");
         System.out.println("enter choice, who are you ? ");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt() ;
@@ -40,7 +40,7 @@ class Entry{
 
 class Daily_Learner{
     public static void daily_learner(){
-        System.out.println(" 1. sign up 2. log in");
+        System.out.println("   1. sign up\n   2. log in");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
         switch(choice){
@@ -65,7 +65,7 @@ class Daily_Learner{
 class Librarian{
 
     public static void librarian(){
-        System.out.println(" 1. sign up \n 2. log in \n 3. add book \n 4. check query");
+        System.out.println("   1. sign up\n   2. log in\n   3. add book\n   4. check query");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
         switch(choice){
@@ -94,7 +94,7 @@ class Librarian{
 
 class Guest{
     public static void guest(){
-        System.out.println(" 1. search book \n 2. raise query \n 3. sign up");
+        System.out.println("   1. search book\n   2. raise query\n   3. sign up");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
         switch(choice){
@@ -138,7 +138,7 @@ class Sign_Up{
             if (password.matches(passRegex)) {
                 System.out.println("Account created successfully!");
                 //ask for search book or borrow book or submit book or raise query
-                System.out.println(" 1. search bok \n 2. borrow book \n 3. submit book \n 4. raise query \n 5. exit");
+                System.out.println("   1. search bok\n   2. borrow book\n   3. submit book\n   4. raise query\n   5. exit");
                 int choice = sc.nextInt();
                 switch(choice){
                     case 1 :
@@ -182,66 +182,101 @@ class Sign_Up{
 class Log_In{
     public static void log_in(){
 
-        // ask for password, if password also got matched from the database
-        // ask for choice
-        System.out.println("enter valid email id");
-        //ask for email id, and find it from the database
         Scanner sc = new Scanner(System.in);
-        String email = sc.nextLine();
-        // regex with all conditions
-        String emailRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z0-9@#$!%*?&+_.-]+@[A-Za-z0-9.-]+$";
-        if (email.matches(emailRegex)) {
-            //search the given email in the database, if got matched then ask for password
-            System.out.println(" email id found");
+        boolean emailReCheck = true;
+        boolean passReCheck = true;
+        while(emailReCheck){
+            System.out.println("enter valid email id");
+            //ask for email id, and find it from the database
+            String email = sc.nextLine();
+            // regex with all conditions
+            String emailRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z0-9@#$!%*?&+_.-]+@[A-Za-z0-9.-]+$";
+            if (email.matches(emailRegex)) {
+                //search the given email in the database, if got matched then ask for password
+                System.out.println("email id found");
 
-            // ask for password
-            System.out.print("Enter password: ");
-            String password = sc.nextLine();
-            // Password regex with conditions (min 6 chars just as example)
-            String passRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z\\d@#$!%*?&]{8,}$";
+                while(passReCheck){
+                    // ask for password
+                    System.out.print("Enter password: ");
+                    String password = sc.nextLine();
+                    // Password regex with conditions (min 6 chars just as example)
+                    String passRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z\\d@#$!%*?&]{8,}$";
 
-            if (password.matches(passRegex)) {//search the password in the database to login
-                System.out.println("log in successful !");
-                //if password got matched then, ask for choices
-                System.out.println(" 1. search bok \n 2. borrow book \n 3. submit book \n 4. raise query \n 5. exit");
-                int choice = sc.nextInt();
-                switch(choice){
-                    case 1 :
-                        Search_Book obj1 = new Search_Book();
-                        obj1.search_book();
-                        break;
-                    case 2 :
-                        Borrow_Book obj2 = new Borrow_Book();
-                        obj2.borrow_book();
-                        break;
-                    case 3 :
-                        Submit_Book obj3 = new Submit_Book();
-                        obj3.submit_book();
-                        break;
-                    case 4 :
-                        Raise_Query obj4 = new Raise_Query();
-                        obj4.raise_query();
-                        break;
-                    case 5 :
-                        System.out.println("exit");
-                        break ;
-                    default :
-                        System.out.println("invalid choice");
+                    if (password.matches(passRegex)) {//search the password in the database to login
+                        System.out.println("log in successful !");
+                        //if password got matched then, ask for choices
+                        System.out.println("   1. search bok\n   2. borrow book\n   3. submit book\n   4. raise query\n   5. exit");
+                        int choice = sc.nextInt();
+                        switch(choice){
+                            case 1 :
+                                Search_Book obj1 = new Search_Book();
+                                obj1.search_book();
+                                break;
+                            case 2 :
+                                Borrow_Book obj2 = new Borrow_Book();
+                                obj2.borrow_book();
+                                break;
+                            case 3 :
+                                Submit_Book obj3 = new Submit_Book();
+                                obj3.submit_book();
+                                break;
+                            case 4 :
+                                Raise_Query obj4 = new Raise_Query();
+                                obj4.raise_query();
+                                break;
+                            case 5 :
+                                System.out.println("exit");
+                                break ;
+                            default :
+                                System.out.println("invalid choice");
 
+                        }
+
+                    }
+                    else {
+                        System.out.println("Invalid password.\nMust contain at least one uppercase, lowercase, digit,"+
+                                "\nand special char(@ # $ ! % * ? & + _ . -).");
+                        System.out.println("   1. try again\n   2. exit");
+                        int choice = sc.nextInt();
+                        sc.nextLine();
+                        switch(choice){
+                            case 1 :
+                                System.out.println("lets recheck");
+                                break;
+                            case 2:
+                                System.out.println("Thank You! Visit Again");
+                                passReCheck = false;
+                                emailReCheck = false;
+                                break;
+                            default:
+                                System.out.println("invalid choice");
+                                passReCheck = false;
+                                emailReCheck = false;
+                        }
+                    }
                 }
-
             }
             else {
-                System.out.println(" Invalid password. Must contain at least one uppercase, lowercase, digit," +
-                        " and special char(@ # $ ! % * ? & + _ . -).");
+                System.out.println("Invalid email id.\nMust contain uppercase, lowercase, digit, " +
+                        "\nspecial char(@ # $ ! % * ? & + _ . -), and be in proper email format.");
+                System.out.println("   1. try again\n   2. exit");
+                int choice = sc.nextInt();
+                sc.nextLine();
+                switch(choice){
+                    case 1 :
+                        System.out.println("lets recheck");
+                        break;
+                    case 2:
+                        System.out.println("Thank You! Visit Again");
+                        emailReCheck = false;
+                        break;
+                    default:
+                        System.out.println("invalid choice");
+                        emailReCheck = false;
+                }
             }
         }
-        else {
-            System.out.println(" Invalid email id. Must contain uppercase, lowercase, digit, " +
-                    "special char(@ # $ ! % * ? & + _ . -), and be in proper email format.");
-        }
     }
-
 }
 
 class Search_Book{
@@ -273,12 +308,12 @@ class Search_Book{
                 }
             }
             if(found){
-                System.out.println(STR."\{book} found \n Thank You! visit again");
+                System.out.println(STR."\{book} found \nThank You! visit again");
                 return true;
             }
             else{
-                System.out.println(STR."\{book} not found \n sorry!");
-                System.out.println("1. try again \n2. exit");
+                System.out.println(STR."\{book} not found \nsorry!");
+                System.out.println("   1. try again\n   2. exit");
                 int choice = sc.nextInt();
                 sc.nextLine();
                 switch(choice){
