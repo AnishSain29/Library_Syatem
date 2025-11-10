@@ -40,7 +40,7 @@ class Entry{
 
 class Daily_Learner{
     public static void daily_learner(){
-        System.out.println("1. sign up 2. log in");
+        System.out.println(" 1. sign up 2. log in");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
         switch(choice){
@@ -65,7 +65,7 @@ class Daily_Learner{
 class Librarian{
 
     public static void librarian(){
-        System.out.println("1. sign up \n 2. log in \n 3. add book \n 4. check query");
+        System.out.println(" 1. sign up \n 2. log in \n 3. add book \n 4. check query");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
         switch(choice){
@@ -94,7 +94,7 @@ class Librarian{
 
 class Guest{
     public static void guest(){
-        System.out.println("1. search book \n 2. raise query \n 3. sign up");
+        System.out.println(" 1. search book \n 2. raise query \n 3. sign up");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
         switch(choice){
@@ -203,7 +203,7 @@ class Log_In{
             if (password.matches(passRegex)) {//search the password in the database to login
                 System.out.println("log in successful !");
                 //if password got matched then, ask for choices
-                System.out.println("1. search bok \n 2. borrow book \n 3. submit book \n 4. raise query \n 5. exit");
+                System.out.println(" 1. search bok \n 2. borrow book \n 3. submit book \n 4. raise query \n 5. exit");
                 int choice = sc.nextInt();
                 switch(choice){
                     case 1 :
@@ -246,9 +246,8 @@ class Log_In{
 
 class Search_Book{
     public static boolean search_book(){
-        System.out.println("enter book name");
+
         Scanner sc = new Scanner(System.in);
-        String book = sc.nextLine();
         String[] Books = {"Whispers of the Wind",
                             "The Last Horizon",
                             "Echoes of Eternity",
@@ -260,23 +259,47 @@ class Search_Book{
                             "The Glass Tower",
                             "Storms of Destiny"};
         boolean found = false;
-        for(int i=0 ; i<Books.length ; i++){
-            if(Books[i].equals(book)){
-                found = true;
-                //search the book in the database, if got matched return true
-                break;
+        boolean reCheck = true;
+
+        while(reCheck){
+            System.out.println("enter book name");
+            String book = sc.nextLine();
+
+            for(int i=0 ; i<Books.length ; i++){
+                if(Books[i].equals(book)){
+                    found = true;
+                    //search the book in the database, if got matched return true
+                    break;
+                }
+            }
+            if(found){
+                System.out.println(STR."\{book} found \n Thank You! visit again");
+                return true;
+            }
+            else{
+                System.out.println(STR."\{book} not found \n sorry!");
+                System.out.println("1. try again \n2. exit");
+                int choice = sc.nextInt();
+                sc.nextLine();
+                switch(choice){
+                    case 1 :
+                        System.out.println("lets recheck");
+                        break;
+                    case 2:
+                        System.out.println("Thank You! Visit Again");
+                        reCheck = false;
+                        break;
+                    default:
+                        System.out.println("invalid choice");
+                        reCheck = false;
+                }
+
+//              return false; //if this line is used else will always return false
+//                        and the while loop will never run again
             }
         }
-        if(found){
-            System.out.println(STR."\{book} found");
-            return true;
-        }
-        else{
-            System.out.println(STR."\{book} not found");
-            return false;
-        }
 
-        //return false;
+        return false;
     }
 }
 
