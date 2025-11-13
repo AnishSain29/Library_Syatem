@@ -16,7 +16,7 @@ class Date_Time{
 class Entry{
     public static void entry(){
         System.out.println("choice:\n   1. Daily Learner\n   2. Librarian\n   3. Guest ");
-        System.out.println("enter choice, who are you ? ");
+        System.out.println("enter your choice, who are you ? ");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt() ;
         switch(choice){
@@ -132,17 +132,17 @@ class Sign_Up{
             String emailRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z0-9@#$!%*?&+_.-]+@[A-Za-z0-9.-]+$";
             if (email.matches(emailRegex)) {
                 //search the given email in the database, if got matched then ask for password
-                System.out.println("email id found");
+                System.out.println("got the email id");
 
                 while(passReCheck){
                     // ask for password
-                    System.out.print("Enter password: ");
+                    System.out.print("enter password: ");
                     String password = sc.nextLine();
                     // Password regex with conditions (min 6 chars just as example)
                     String passRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z\\d@#$!%*?&]{8,}$";
 
                     if (password.matches(passRegex)) {//search the password in the database to login
-                        System.out.println("log in successful !");
+                        System.out.println("sign up successful !");
                         //if password got matched then, ask for choices
                         System.out.println("   1. search bok\n   2. borrow book\n   3. submit book\n   4. raise query\n   5. exit");
                         int choice = sc.nextInt();
@@ -349,11 +349,12 @@ class Search_Book{
             }
             if(found){
                 System.out.println(STR."\{book} found \nThank You! visit again");
+                //break;
                 return true;
             }
             else{
                 System.out.println(STR."\{book} not found \nsorry!");
-                System.out.println("   1. try again\n   2. exit");
+                System.out.println("   1. try... again\n   2. exit");
                 int choice = sc.nextInt();
                 sc.nextLine();
                 switch(choice){
@@ -444,6 +445,7 @@ class Add_Book{
                 String authorName = sc.nextLine();
                 System.out.println("enter book id");
                 String bookId = sc.nextLine();
+                System.out.println(STR."\{bookName} is added to the library");
             }
             else {
                 System.out.println(" Invalid password. Must contain at least one uppercase, lowercase, digit," +
