@@ -245,7 +245,7 @@ class Log_In{
                     if (password.matches(passRegex)) {//search the password in the database to login
                         System.out.println("log in successful !");
                         //if password got matched then, ask for choices
-                        System.out.println("   1. search bok\n   2. borrow book\n   3. submit book\n   4. raise query\n   5. exit");
+                        System.out.println("   1. search book\n   2. borrow book\n   3. submit book\n   4. raise query\n   5. exit");
                         int choice = sc.nextInt();
                         switch(choice){
                             case 1 :
@@ -265,13 +265,13 @@ class Log_In{
                                 obj4.raise_query();
                                 break;
                             case 5 :
-                                System.out.println("exit");
+                                System.out.println("Thank you! visit again! ");
                                 break ;
                             default :
                                 System.out.println("invalid choice");
 
                         }
-
+                        return ;
                     }
                     else {
                         System.out.println("Invalid password.\nMust contain at least one uppercase, lowercase, digit,"+
@@ -297,7 +297,7 @@ class Log_In{
                 }
             }
             else {
-                System.out.println("Invalid email id.\nMust contain uppercase, lowercase, digit, " +
+                System.out.println("Invalid email id.1\nMust contain uppercase, lowercase, digit, " +
                         "\nspecial char(@ # $ ! % * ? & + _ . -), and be in proper email format.");
                 System.out.println("   1. try again\n   2. exit");
                 int choice = sc.nextInt();
@@ -350,7 +350,7 @@ class Search_Book{
             if(found){
                 System.out.println(STR."\{book} found \nThank You! visit again");
                 //break;
-                return true;
+                return false;
             }
             else{
                 System.out.println(STR."\{book} not found \nsorry!");
