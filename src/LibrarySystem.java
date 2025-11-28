@@ -297,7 +297,7 @@ class Log_In{
                 }
             }
             else {
-                System.out.println("Invalid email id.1\nMust contain uppercase, lowercase, digit, " +
+                System.out.println("Invalid email id.\nMust contain uppercase, lowercase, digit, " +
                         "\nspecial char(@ # $ ! % * ? & + _ . -), and be in proper email format.");
                 System.out.println("   1. try again\n   2. exit");
                 int choice = sc.nextInt();
@@ -333,13 +333,16 @@ class Search_Book{
                             "A Thousand Suns",
                             "The Glass Tower",
                             "Storms of Destiny"};
-        boolean found = false;
+        //boolean found = false; //if it is taken here then for further searching of another book "found"
+                                // will always remain "true" and the output will be "found" everytime
+
         boolean reCheck = true;
 
         while(reCheck){
             System.out.println("enter book name");
             String book = sc.nextLine();
 
+            boolean found = false;
             for(int i=0 ; i<Books.length ; i++){
                 if(Books[i].equals(book)){
                     found = true;
@@ -348,13 +351,26 @@ class Search_Book{
                 }
             }
             if(found){
-                System.out.println(STR."\{book} found \nThank You! visit again");
-                //break;
-                return false;
+                System.out.println(STR."\{book} found ");
+                System.out.println("   1. search another book ?? \n   2. exit");
+                int choice = sc.nextInt();
+                sc.nextLine(); // after integer input this line is used for String input(for taking input of new book name)
+                switch(choice){
+                    case 1:
+                        System.out.println("lets check another book");
+                        break ;
+                    case 2:
+                       System.out.println("Thank You! Visit Again");
+                       reCheck = false ;
+                       break;
+                }
+                //break;  //no need of "break" or "return" or else it will go out of the "while" loop
+                        // and no further searching will be done
+                //return false;
             }
             else{
                 System.out.println(STR."\{book} not found \nsorry!");
-                System.out.println("   1. try... again\n   2. exit");
+                System.out.println("   1. try again\n   2. exit");
                 int choice = sc.nextInt();
                 sc.nextLine();
                 switch(choice){
